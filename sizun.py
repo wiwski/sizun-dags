@@ -64,4 +64,4 @@ t_check_and_build = BashOperator(
 )
 
 
-t_ouest_france >> t_immonot >> t_figaro >> t_check_and_build
+t_ouest_france >> t_immonot >> t_figaro >> t_superimmo >> t_check_and_build

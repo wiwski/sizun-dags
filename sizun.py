@@ -59,7 +59,7 @@ t_superimmo = BashOperator(
 
 t_check_and_build = BashOperator(
     task_id='check_and_build',
-    bash_command='/root/sizun/venv/bin/python /root/sizun/check_changes.py {{dag_run.start_date}}',
+    bash_command='/root/sizun/venv/bin/python /root/sizun/check_changes.py "{{dag_run.start_date}}"',
     dag=dag,
     trigger_rule='all_done'
 )

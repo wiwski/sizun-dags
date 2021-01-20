@@ -16,7 +16,7 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=1),
     'start_date': days_ago(1),
 }
 dag = DAG(
@@ -24,6 +24,7 @@ dag = DAG(
     default_args=default_args,
     description='Sizun DAG',
     schedule_interval=timedelta(minutes=5),
+    catchup=False,
     tags=[],
 )
 t_ouest_france = BashOperator(
@@ -58,7 +59,7 @@ t_superimmo = BashOperator(
 
 t_check_and_build = BashOperator(
     task_id='check_and_build',
-    bash_command='/root/sizun/venv/bin/python /root/sizun/check_changes.py {{ts}}',
+    bash_command='/root/sizun/venv/bin/python /root/sizun/check_changes.py {{dag_run.start_date}}',
     dag=dag,
     trigger_rule='all_done'
 )

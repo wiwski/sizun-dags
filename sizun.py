@@ -77,6 +77,13 @@ t_bourse_immobilier = BashOperator(
     trigger_rule='all_done'
 )
 
+t_finistere_immobilier = BashOperator(
+    task_id='finistere_immobilier',
+    bash_command='/root/sizun/venv/bin/python /root/sizun/scrapper.py finistere_immobilier',
+    dag=dag,
+    trigger_rule='all_done'
+)
+
 t_check_and_build = BashOperator(
     task_id='check_and_build',
     bash_command='/root/sizun/venv/bin/python /root/sizun/check_changes.py "{{dag_run.start_date}}"',
@@ -85,4 +92,4 @@ t_check_and_build = BashOperator(
 )
 
 
-t_ouest_france >> t_immonot >> t_figaro >> t_superimmo >>  t_planete_immobilier >> t_audierne_immobilier >> t_bourse_immobilier >> t_check_and_build
+t_ouest_france >> t_immonot >> t_figaro >> t_superimmo >>  t_planete_immobilier >> t_audierne_immobilier >> t_bourse_immobilier >> t_finistere_immobilier >> t_check_and_build

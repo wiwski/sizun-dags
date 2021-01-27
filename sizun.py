@@ -63,6 +63,13 @@ t_planete_immobilier = BashOperator(
     trigger_rule='all_done'
 )
 
+t_audierne_immobilier = BashOperator(
+    task_id='audierne_immobilier',
+    bash_command='/root/sizun/venv/bin/python /root/sizun/scrapper.py audierne_immobilier',
+    dag=dag,
+    trigger_rule='all_done'
+)
+
 t_check_and_build = BashOperator(
     task_id='check_and_build',
     bash_command='/root/sizun/venv/bin/python /root/sizun/check_changes.py "{{dag_run.start_date}}"',

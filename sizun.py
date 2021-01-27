@@ -78,4 +78,4 @@ t_check_and_build = BashOperator(
 )
 
 
-t_ouest_france >> t_immonot >> t_figaro >> t_superimmo >>  t_planete_immobilier >> t_check_and_build
+t_ouest_france >> t_immonot >> t_figaro >> t_superimmo >>  t_planete_immobilier >> t_audierne_immobilier >> t_check_and_build

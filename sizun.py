@@ -57,7 +57,7 @@ t_superimmo = BashOperator(
 )
 
 t_planete_immobilier = BashOperator(
-    task_id='superimmo',
+    task_id='planete_immobilier',
     bash_command='/root/sizun/venv/bin/python /root/sizun/scrapper.py planete_immobilier',
     dag=dag,
     trigger_rule='all_done'
